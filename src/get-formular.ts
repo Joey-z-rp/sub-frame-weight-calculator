@@ -35,7 +35,7 @@ const generateFormula = (data: string[][]) => {
   );
   const [snrMin, snrMax] = getMinAndMax(snrIndex, filtered);
 
-  const formula = `27*(1-FWHM-${fwhmMin})/${
+  const formula = `27*(1-(FWHM-${fwhmMin})/${
     fwhmMax - fwhmMin
   })+11*(1-(Eccentricity-${eccentricityMin})/${
     eccentricityMax - eccentricityMin
