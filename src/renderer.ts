@@ -26,6 +26,23 @@
  * ```
  */
 
-import './index.css';
+import Dropzone from "dropzone";
+import { getFormula } from "./get-formular";
 
-console.log('👋 This message is being logged by "renderer.js", included via webpack');
+import "./index.css";
+
+console.log(
+  '👋 This message is being logged by "renderer.js", included via webpack'
+);
+
+const dropzone = new Dropzone("#file-drop");
+
+dropzone.on("addedfile", async (file) => {
+  console.log("A file has been added");
+  const formula = await getFormula(file);
+
+  document.getElementById("formula").innerText = formula;
+
+  await navigator.clipboard.writeText(formula);
+  document.getElementById("copied").innerText = "Copied!";
+});
